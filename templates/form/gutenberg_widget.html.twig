@@ -1,0 +1,27 @@
+{# Form theme for GutenbergType: mounts the editor next to a plain textarea holding the value. #}
+{% block gutenberg_widget %}
+    {# Emitted at most once per request; harmless if the layout already printed it in <head>. #}
+    {{ gutenberg_editor_assets() }}
+
+    <div class="wsg-field"{% if config_url is null %} data-gutenberg-unavailable="1"{% endif %}>
+        {% if config_url is not null %}
+            <div class="wsg-editor"
+                 data-gutenberg-editor
+                 data-gutenberg-target="{{ id }}"
+                 data-gutenberg-config-url="{{ config_url }}"
+                 data-gutenberg-height="{{ editor_height }}"
+                 data-gutenberg-settings="{{ editor_settings|json_encode }}">
+                <div class="wsg-editor__loading">{{ 'Ładowanie edytora…' }}</div>
+            </div>
+        {% endif %}
+
+        <textarea {{ block('widget_attributes') }} class="wsg-source"{% if config_url is not null %} hidden{% endif %}>{{ value }}</textarea>
+
+        {% if config_url is null %}
+            <p class="wsg-field__hint">
+                Trasy bundla nie są zaimportowane — edytor wizualny jest wyłączony.
+                Dodaj <code>config/routes/web_systems_gutenberg.yaml</code>, aby go włączyć.
+            </p>
+        {% endif %}
+    </div>
+{% endblock %}

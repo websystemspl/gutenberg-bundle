@@ -1,0 +1,7 @@
+/**
+ * Front-end stylesheet: everything needed to display blocks saved by the editor.
+ * Published as public/front.css and referenced by `gutenberg_front_assets()`.
+ */
+@import "@wordpress/block-library/build-style/common.css";
+@import "@wordpress/block-library/build-style/style.css";
+@import "@wordpress/block-library/build-style/theme.css";

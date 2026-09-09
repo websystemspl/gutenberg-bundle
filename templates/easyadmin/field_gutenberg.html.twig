@@ -1,0 +1,9 @@
+{# Index and detail rendering of GutenbergField. EasyAdmin includes field templates without
+   the surrounding context, so the current page is read from the `ea` global. #}
+{% set current_page = ea.context.crud.currentPage|default(null) %}
+
+{% if current_page == 'detail' and field.customOptions.get('renderOnDetail') %}
+    <div class="wsg-content entry-content">{{ gutenberg_render(field.value) }}</div>
+{% else %}
+    <span class="wsg-excerpt">{{ gutenberg_excerpt(field.value, field.customOptions.get('excerptLength')|default(120)) }}</span>
+{% endif %}

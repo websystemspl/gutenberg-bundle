@@ -1,0 +1,292 @@
+/**
+ * Editor stylesheet: the upstream WordPress editor styles plus the small amount of layout
+ * this bundle adds to embed the editor inside a Symfony form field.
+ */
+@import "@wordpress/components/build-style/style.css";
+@import "@wordpress/block-editor/build-style/style.css";
+@import "@wordpress/block-editor/build-style/content.css";
+@import "@wordpress/block-library/build-style/common.css";
+@import "@wordpress/block-library/build-style/editor.css";
+@import "@wordpress/block-library/build-style/style.css";
+@import "@wordpress/block-library/build-style/theme.css";
+@import "@wordpress/format-library/build-style/style.css";
+
+.wsg-field {
+	--wsg-border: #d0d5dd;
+	--wsg-surface: #fff;
+	--wsg-ink: #1e1e1e;
+	--wsg-muted: #667085;
+}
+
+/* The editor chrome ships light styling. Admin panels with a dark theme (EasyAdmin's, for
+   one) would otherwise bleed their background through and make the panels unreadable, so the
+   editor paints its own surface. */
+.wsg-editor,
+.wsg-editor__toolbar,
+.wsg-editor__inspector,
+.wsg-editor__root {
+	color: var(--wsg-ink, #1e1e1e);
+	background: var(--wsg-surface, #fff);
+}
+
+.wsg-editor {
+	border: 1px solid var(--wsg-border);
+	border-radius: 6px;
+	overflow: hidden;
+	background: var(--wsg-surface);
+}
+
+.wsg-editor__loading,
+.wsg-editor__error {
+	padding: 24px;
+	color: var(--wsg-muted);
+	font-size: 13px;
+}
+
+.wsg-editor__error {
+	color: #b42318;
+}
+
+.wsg-editor__root {
+	display: block;
+}
+
+/* Full-viewport mode: escapes the form column so the canvas gets real estate. */
+.wsg-editor__root--fullscreen {
+	position: fixed;
+	inset: 0;
+	z-index: 99999;
+	display: flex;
+	flex-direction: column;
+	background: var(--wsg-surface, #fff);
+}
+
+.wsg-editor__root--fullscreen .wsg-editor__body {
+	flex: 1 1 auto;
+	min-height: 0;
+	height: auto !important;
+}
+
+.wsg-editor__toolbar {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	padding: 6px 8px;
+	border-bottom: 1px solid var(--wsg-border);
+	background: #f9fafb;
+}
+
+.wsg-editor__toolbar-spacer {
+	flex: 1;
+}
+
+.wsg-editor__body {
+	display: flex;
+	align-items: stretch;
+	min-height: 320px;
+}
+
+.wsg-editor__canvas {
+	flex: 1;
+	min-width: 0;
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+
+/* BlockTools renders an unclassed wrapper, and the iframe chain sizes to its content by
+   default, which collapses the canvas inside a fixed-height field. Stretch the whole chain. */
+.wsg-editor__canvas > div {
+	flex: 1 1 auto;
+	min-height: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+.wsg-editor__canvas .popover-slot {
+	flex: 0 0 auto;
+}
+
+.wsg-editor__canvas .block-editor-iframe__container,
+.wsg-editor__canvas .block-editor-iframe__scale-container {
+	flex: 1 1 auto;
+	min-height: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+.wsg-editor__canvas iframe[name="editor-canvas"] {
+	flex: 1 1 auto;
+	width: 100%;
+	height: 100%;
+	min-height: 0;
+	display: block;
+	border: 0;
+}
+
+/* --- Code view ------------------------------------------------------------------------ */
+
+.wsg-editor__code {
+	flex: 1 1 auto;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	background: var(--wsg-surface, #fff);
+}
+
+.wsg-editor__code-bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 8px 12px;
+	border-bottom: 1px solid var(--wsg-border);
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--wsg-muted);
+}
+
+.wsg-editor__code-area {
+	flex: 1 1 auto;
+	min-height: 0;
+	width: 100%;
+	resize: none;
+	border: 0;
+	padding: 16px;
+	background: var(--wsg-surface, #fff);
+	color: var(--wsg-ink, #1e1e1e);
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 13px;
+	line-height: 1.7;
+	tab-size: 2;
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.wsg-editor__code-area:focus {
+	outline: none;
+}
+
+.wsg-editor__inspector {
+	width: 280px;
+	color: var(--wsg-ink, #1e1e1e);
+	flex: 0 0 280px;
+	border-left: 1px solid var(--wsg-border);
+	overflow-y: auto;
+	background: var(--wsg-surface);
+}
+
+.wsg-field__hint {
+	margin-top: 8px;
+	font-size: 13px;
+	color: var(--wsg-muted);
+}
+
+/* --- Custom (PHP-defined) blocks ------------------------------------------------------ */
+
+.wsg-block__quick {
+	margin-bottom: 12px;
+	padding: 12px;
+	border: 1px dashed var(--wsg-border);
+	border-radius: 4px;
+	background: #f9fafb;
+}
+
+.wsg-block__quick-title {
+	margin: 0 0 8px;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--wsg-muted);
+}
+
+.wsg-block__inner {
+	margin-top: 12px;
+}
+
+.wsg-ssr--loading,
+.wsg-ssr--empty {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 80px;
+	color: var(--wsg-muted);
+	font-size: 13px;
+}
+
+.wsg-richtext [contenteditable] {
+	min-height: 60px;
+	padding: 8px;
+	border: 1px solid var(--wsg-border);
+	border-radius: 2px;
+	background: var(--wsg-surface);
+}
+
+/* --- Media picker --------------------------------------------------------------------- */
+
+.wsg-media__preview img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 4px;
+	display: block;
+	margin-bottom: 8px;
+}
+
+.wsg-media__empty {
+	margin: 0 0 8px;
+	font-size: 12px;
+	color: var(--wsg-muted);
+}
+
+.wsg-media__actions {
+	display: flex;
+	gap: 8px;
+}
+
+.wsg-media-modal__toolbar {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 16px;
+}
+
+.wsg-media-modal__upload {
+	cursor: pointer;
+}
+
+.wsg-media-modal__grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+	gap: 12px;
+	max-height: 60vh;
+	overflow-y: auto;
+}
+
+.wsg-media-modal__item {
+	border: 1px solid var(--wsg-border);
+	border-radius: 4px;
+	background: none;
+	padding: 6px;
+	cursor: pointer;
+	text-align: center;
+	font-size: 11px;
+	color: var(--wsg-muted);
+	overflow: hidden;
+}
+
+.wsg-media-modal__item img {
+	width: 100%;
+	height: 100px;
+	object-fit: cover;
+	border-radius: 2px;
+	display: block;
+	margin-bottom: 4px;
+}
+
+.wsg-media-modal__item:hover {
+	border-color: var(--wp-admin-theme-color, #3858e9);
+}

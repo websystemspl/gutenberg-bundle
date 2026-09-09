@@ -1,0 +1,12 @@
+/**
+ * Stylesheet for the inside of the editor canvas iframe.
+ *
+ * The iframe is a separate document, so nothing loaded on the host page applies to it. Upstream
+ * copies matching parent stylesheets across, but only ones carrying an id attribute, which is a
+ * WordPress enqueueing detail this bundle does not reproduce — so the canvas gets its own build
+ * instead. Without it the in-canvas UI (block appenders, the "+" inserters, placeholders such as
+ * the Columns layout picker) renders unstyled.
+ */
+@import "@wordpress/components/build-style/style.css";
+@import "@wordpress/block-editor/build-style/content.css";
+@import "@wordpress/block-library/build-style/editor.css";

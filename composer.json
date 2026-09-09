@@ -1,0 +1,76 @@
+{
+    "name": "web-systems/gutenberg-bundle",
+    "description": "Gutenberg (WordPress block editor) as a Symfony form field: visual page building, block storage, server-side rendering and PHP-defined custom blocks.",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "keywords": [
+        "symfony",
+        "bundle",
+        "gutenberg",
+        "block-editor",
+        "wysiwyg",
+        "page-builder",
+        "cms",
+        "easyadmin"
+    ],
+    "authors": [
+        {
+            "name": "Web Systems",
+            "email": "d.lawinski@web-systems.pl"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "psr/log": "^1.1 || ^2.0 || ^3.0",
+        "symfony/config": "^7.3 || ^8.0",
+        "symfony/dependency-injection": "^7.3 || ^8.0",
+        "symfony/filesystem": "^7.3 || ^8.0",
+        "symfony/finder": "^7.3 || ^8.0",
+        "symfony/form": "^7.3 || ^8.0",
+        "symfony/framework-bundle": "^7.3 || ^8.0",
+        "symfony/http-foundation": "^7.3 || ^8.0",
+        "symfony/http-kernel": "^7.3 || ^8.0",
+        "symfony/routing": "^7.3 || ^8.0",
+        "symfony/twig-bundle": "^7.3 || ^8.0",
+        "twig/twig": "^3.10"
+    },
+    "require-dev": {
+        "doctrine/doctrine-bundle": "^2.12 || ^3.0",
+        "doctrine/orm": "^3.0",
+        "easycorp/easyadmin-bundle": "^4.10 || ^5.0",
+        "symfony/console": "^7.3 || ^8.0",
+        "symfony/http-client": "^7.3 || ^8.0",
+        "symfony/phpunit-bridge": "^7.3 || ^8.0",
+        "symfony/process": "^7.3 || ^8.0",
+        "symfony/security-core": "^7.3 || ^8.0",
+        "symfony/validator": "^7.3 || ^8.0"
+    },
+    "suggest": {
+        "doctrine/doctrine-bundle": "To store block revisions and the reusable-block library.",
+        "easycorp/easyadmin-bundle": "To use GutenbergField inside EasyAdmin CRUD controllers.",
+        "symfony/console": "To use the gutenberg:update and make:gutenberg-block commands.",
+        "symfony/http-client": "Required by the gutenberg:update command.",
+        "symfony/process": "Required by gutenberg:update --build to run the npm build."
+    },
+    "autoload": {
+        "psr-4": {
+            "WebSystems\\GutenbergBundle\\": "src/",
+            "WebSystems\\GutenbergBundle\\Migrations\\": "migrations/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "WebSystems\\GutenbergBundle\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "0.0.x-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
