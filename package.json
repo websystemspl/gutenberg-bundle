@@ -1,30 +1,30 @@
 {
-  "name": "@web-systems/gutenberg-bundle-editor",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Build pipeline for the block editor assets shipped in public/ by web-systems/gutenberg-bundle.",
-  "license": "MIT",
-  "scripts": {
-    "build": "wp-scripts build",
-    "start": "wp-scripts start",
-    "lint:js": "wp-scripts lint-js assets/js"
-  },
-  "devDependencies": {
-    "@wordpress/scripts": "^34.2.0"
-  },
-  "dependencies": {
-    "@wordpress/block-editor": "^17.0.0",
-    "@wordpress/block-library": "^10.5.0",
-    "@wordpress/blocks": "^15.27.0",
-    "@wordpress/components": "^40.0.0",
-    "@wordpress/core-data": "^7.54.0",
-    "@wordpress/data": "^10.54.0",
-    "@wordpress/dom-ready": "^4.54.0",
-    "@wordpress/element": "^8.6.0",
-    "@wordpress/format-library": "^5.54.0",
-    "@wordpress/i18n": "^6.27.0",
-    "@wordpress/icons": "^15.5.0",
-    "@wordpress/keyboard-shortcuts": "^5.54.0",
-    "@wordpress/notices": "^5.54.0"
-  }
+    "name": "@web-systems/gutenberg-bundle-editor",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Build pipeline for the block editor assets shipped in public/ by web-systems/gutenberg-bundle.",
+    "license": "MIT",
+    "scripts": {
+        "build": "wp-scripts build",
+        "start": "wp-scripts start",
+        "lint:js": "wp-scripts lint-js assets/js"
+    },
+    "devDependencies": {
+        "@wordpress/scripts": "^34.2.0"
+    },
+    "dependencies": {
+        "@wordpress/block-editor": "^17.1.0",
+        "@wordpress/block-library": "^11.0.0",
+        "@wordpress/blocks": "^16.0.0",
+        "@wordpress/components": "^40.1.0",
+        "@wordpress/core-data": "^8.0.0",
+        "@wordpress/data": "^10.55.0",
+        "@wordpress/dom-ready": "^4.55.0",
+        "@wordpress/element": "^8.7.0",
+        "@wordpress/format-library": "^5.55.0",
+        "@wordpress/i18n": "^6.28.0",
+        "@wordpress/icons": "^16.0.0",
+        "@wordpress/keyboard-shortcuts": "^5.55.0",
+        "@wordpress/notices": "^5.55.0"
+    }
 }
