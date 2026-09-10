@@ -9,6 +9,7 @@ import { dispatch, select } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 import { InnerBlocks } from '@wordpress/block-editor';
 import DynamicBlockEdit from './DynamicBlockEdit';
+import { resolveIcon } from './resolveIcon';
 
 export function registerCustomBlocks( config ) {
 	const endpoints = config.endpoints || {};
@@ -21,7 +22,7 @@ export function registerCustomBlocks( config ) {
 		registerBlockType( schema.name, {
 			apiVersion: 3,
 			title: schema.title,
-			icon: schema.icon,
+			icon: resolveIcon( schema.icon ),
 			category: schema.category,
 			description: schema.description || undefined,
 			keywords: schema.keywords || [],
@@ -48,6 +49,12 @@ export function registerBlockCategories( config ) {
 		...category,
 		title: 'string' === typeof category.title ? __( category.title ) : category.title,
 	} ) );
+
+	additions.forEach( ( category ) => {
+		if ( category.icon ) {
+			category.icon = resolveIcon( category.icon );
+		}
+	} );
 
 	dispatch( 'core/blocks' ).setCategories( [ ...translated, ...additions ] );
 }

@@ -125,6 +125,14 @@
 	border: 0;
 }
 
+/* Raw SVG passed to #[AsBlock(icon: '<svg …>')]. */
+.wsg-block-icon svg {
+	width: 24px;
+	height: 24px;
+	display: block;
+	fill: currentColor;
+}
+
 /* --- Code view ------------------------------------------------------------------------ */
 
 .wsg-editor__code {

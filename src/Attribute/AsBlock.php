@@ -17,7 +17,12 @@ final class AsBlock
     /**
      * @param string               $name        Fully qualified block name, e.g. `app/hero`. Must contain a namespace.
      * @param string               $title       Label shown in the inserter and the block toolbar
-     * @param string               $icon        A Dashicon slug (`cover-image`, `star-filled`, …) or an SVG string
+     * @param string               $icon        Icon name resolved against @wordpress/icons, in camelCase (`listView`)
+     *                                          or kebab-case (`list-view`); the common Dashicon slugs
+     *                                          (`cover-image`, `format-quote`, …) are mapped to their SVG
+     *                                          equivalents. Raw `<svg>` markup is also accepted. Dashicons
+     *                                          themselves are a WordPress font that ships with no npm package,
+     *                                          so a bare slug with no mapping falls back to the default icon.
      * @param string               $category    Editor category: `text`, `media`, `design`, `widgets`, `embed`, or a custom one
      * @param string|null          $template    Twig template used to render the block; required by AbstractBlockType
      * @param string|null          $description Sentence shown in the inserter tooltip

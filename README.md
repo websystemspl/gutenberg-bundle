@@ -173,6 +173,12 @@ Available field types: `text`, `textarea`, `richText`, `html`, `number`, `range`
 `select`, `color`, `image`, `url`. Pass `inContent: true` to edit a field directly on the
 canvas instead of in the sidebar.
 
+The `icon` argument takes a name from [@wordpress/icons](https://wordpress.github.io/gutenberg/?path=/story/icons-icon--library)
+in camelCase or kebab-case (`listView`, `list-view`), one of the common Dashicon slugs, which
+are mapped to their SVG equivalents, or raw `<svg>` markup. Bare Dashicon slugs alone would
+render nothing: Dashicons are a font shipped with WordPress core, not with any npm package, so
+an unmapped name falls back to the default block icon rather than to an empty space.
+
 Blocks are ordinary services, so they may inject anything:
 
 ```php

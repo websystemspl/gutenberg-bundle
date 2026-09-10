@@ -77,7 +77,8 @@ function registerCategory() {
 
 	dispatch( 'core/blocks' ).setCategories( [
 		...existing,
-		{ slug: CATEGORY, title: __( 'Reusable blocks' ), icon: symbolIcon },
+		// No icon: core categories render their heading as plain text.
+		{ slug: CATEGORY, title: __( 'Reusable blocks' ) },
 	] );
 }
 
